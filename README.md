@@ -221,6 +221,10 @@ This is a  dashboard comparing the total fatal injuries and uninjured in purpose
 
 The dashboard above compares total fatal injuries and total uninjured by model and weather condition.
 
+From the dashboard we can see the make and models and how their are affected by weather.
+## Observation
+Boeing model 737 has a higher number of uninjured among the other Boeing models hence I would preferably advise the shareholders to invest in that model since it's more durable against any weather condition.
+
 ## Conclusion
 * The most common type of aircraft used for travel is Cessna and it's also the riskiest since it has the highest number of fatalities among the aircraft.
 * Boeing is the safest aircraft and I would advise the business shareholders to purchase the Boeing Aircraft since it offers low risk.
