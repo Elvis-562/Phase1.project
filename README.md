@@ -9,6 +9,7 @@ The goals for this project are:
 * Find the shareholders what aircrafts offer low risks to invest in.
 * Determine what aircrafts offer high risks to the investors.
 * Provide information to the head of new aviation division on which aircrafts the shareholders should purchase.
+
 Once these goals are met we can identify which aircrafts are suitable for any stakeholder to invest in with minimal loss and projections for profit in the future in the aviation industry.
 ## Data Understanding
 The data  comes from [Kaggle](https://www.kaggle.com/datasets/khsamaha/aviation-accident-database-synopses) which has information about aviation accidents from 1962 to 2023.
@@ -76,15 +77,15 @@ This shows us the number of columns and rows in the dataset.It also shows the nu
 df.describe()
 ```
 ```python
-       	Number.of.Engines 	Total.Fatal.Injuries 	Total.Serious.Injuries 	Total.Minor.Injuries 	Total.Uninjured
-count 	   82805.000000       77488.000000 	        76379.000000 	         76956.000000          82977.000000
-mean 	    1.146585      	    0.647855 	              0.279881 	           0.357061 	            5.325440
- std 	     0.446510 	          5.485960              	1.544084 	          2.235625 	            27.913634
-min      	0.000000 	          0.000000 	            0.000000             	0.000000 	            0.000000
-25%      	1.000000 	         0.000000 	             0.000000 	            0.000000 	            0.000000
-50%      	1.000000 	         0.000000 	             0.000000 	            0.000000 	            1.000000
-75% 	     1.000000 	         0.000000 	             0.000000 	            0.000000 	            2.000000
-max 	     8.000000 	        349.000000 	            161.000000 	          380.000000 	          699.000000
+      Number.of.Engines Total.Fatal.Injuries Total.Serious.Injuries Total.Minor.Injuries 	Total.Uninjured
+count 	82805.000000 	77488.000000 	76379.000000 	76956.000000 	82977.000000
+mean 	1.146585 	0.647855 	0.279881 	0.357061 	5.325440
+std 	0.446510 	5.485960 	1.544084 	2.235625 	27.913634
+min 	0.000000 	0.000000 	0.000000 	0.000000 	0.000000
+25% 	1.000000 	0.000000 	0.000000 	0.000000 	0.000000
+50% 	1.000000 	0.000000 	0.000000 	0.000000 	1.000000
+75% 	1.000000 	0.000000 	0.000000 	0.000000 	2.000000
+max 	8.000000 	349.000000 	161.000000 	380.000000 	699.000000
 ```
 
 This shows the aggregation data of the numeric values in the dataset.
@@ -143,10 +144,29 @@ df
 We can also drop  rows and fill in null values using mean, mode and median.
 
 I dropped rows in columns containing  few missing values which include columns make, model, location and Country
+```python
+df=df.dropna(subset=["Location"])
+df
+```
+
+I have dropped rows containing missing values in column location using dropna.
 
 I filled the  missing values in the rest of the categorical data such as Purpose of flight and Injury severity with mode.
+```python
+df["Injury.Severity"].fillna(df["Injury.Severity"].mode()[0],inplace=True)
+df.head()
+```
+
+I have used fillna  to fill in the missing values with mode.
 
 For the numerical data I filled in the null values with the median of each respective column.
+
+Numerical data includes Total fatal,serious,minor and uninjured.
+```python
+#fill values for Total.Serious.injuries
+df["Total.Serious.Injuries"].fillna(df["Total.Serious.Injuries"].median(), inplace =True)
+df
+```
 
 I also removed duplicates in the data using
 ```python
